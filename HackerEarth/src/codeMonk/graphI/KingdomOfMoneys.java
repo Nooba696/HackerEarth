@@ -71,7 +71,7 @@ import java.util.List;
 
 /**
  *
- * @author Pratick
+ * @author Nooba
  */
 public class KingdomOfMoneys {
 
@@ -108,7 +108,7 @@ public class KingdomOfMoneys {
         long maxBananas = 0;
         for (int i = 1; i < A.length; i++) {
             if (!vis[i]) {
-                dfsI(vis);
+                dfsI(i,vis);
                 maxBananas = (bananas > maxBananas) ? bananas : maxBananas;
                 bananas = 0;
             }
@@ -141,12 +141,12 @@ public class KingdomOfMoneys {
         bananas = bananas + A[u];
     }
     
-    //Ittertative Void dfs
-    public static void dfsI(boolean[] vis) {
+    //Itertative Void dfs
+    public static void dfsI(int i,boolean[] vis) {
         
         Deque<Integer> stack = new ArrayDeque();
-        stack.push(1);
-        vis[1]=true;
+        stack.push(i);
+        vis[i]=true;
         while(!stack.isEmpty()){
             int u = stack.pop();
             bananas = bananas + A[u];
