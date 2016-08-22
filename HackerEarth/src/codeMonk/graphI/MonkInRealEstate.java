@@ -70,7 +70,7 @@ public class MonkInRealEstate {
             answerByVoid();
         }
     }
-    private static long cities = 0;
+    private static int cities = 0;
     private static void answerByVoid() {
         boolean[] vis = new boolean[adjLists.length];
         for (int i = 1; i < adjLists.length; i++) {
