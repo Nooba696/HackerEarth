@@ -62,6 +62,7 @@ public class MonksEncounterWithPolynomial {
                 Fio.fout.println(0);
             else
                 Fio.fout.println((int)Math.ceil((-B+Math.sqrt(Math.pow(B,2)-4*A*(C-K)))/(2*A)));
+                
         }
     }
 }
