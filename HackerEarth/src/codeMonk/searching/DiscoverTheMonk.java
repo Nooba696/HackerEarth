@@ -59,14 +59,14 @@ import java.util.HashSet;
 
 /**
  *
- * @author Pratick
+ * @author Nooba
  */
 public class DiscoverTheMonk {
     
     public static void main(String args[]){
         
         //solveBySortBinSearch();
-        solveBySortHashing();
+        solveByHashing();
     }
     public static void solveBySortBinSearch(){
         
@@ -82,14 +82,13 @@ public class DiscoverTheMonk {
                 Fio.fout.println("NO");
         }
     }
-    public static void solveBySortHashing(){
+    public static void solveByHashing(){
         
         int N = Fio.fin.readInt();
         HashSet<Integer> h = new HashSet(N); 
         int Q = Fio.fin.readInt();
-        for(int i=0;i<N;i++){
-            Fio.fout.println("Called");
-            h.add(Fio.fin.readInt());}
+        for(int i=0;i<N;i++)
+            h.add(Fio.fin.readInt());
         while(Q-->0){
             if(h.contains(Fio.fin.readInt()))
                 Fio.fout.println("YES");
