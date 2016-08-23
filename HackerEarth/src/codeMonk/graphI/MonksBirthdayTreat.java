@@ -48,7 +48,7 @@
                         LISP_SBCL, LUA, OBJECTIVEC, OCAML, OCTAVE, PASCAL, PERL,
                         PHP, PYTHON, PYTHON3, R, RACKET, RUBY, RUST, SCALA, 
                         SWIFT, VB
-*/
+ */
 package codeMonk.graphI;
 
 import fastio.Fio;
@@ -59,17 +59,18 @@ import java.util.List;
 
 /**
  *
- * @author Pratick
+ * @author Nooba
  */
 public class MonksBirthdayTreat {
+
     private static List<Integer>[] adjLists;
 
     public static void main(String args[]) {
 
-        
-        adjLists = new List[Fio.fin.readInt()+1];
-        for(int i=0;i<adjLists.length;i++)
+        adjLists = new List[Fio.fin.readInt() + 1];
+        for (int i = 0; i < adjLists.length; i++) {
             adjLists[i] = new ArrayList();
+        }
         int E = Fio.fin.readInt();
         while (E-- > 0) {
             int u = Fio.fin.readInt();
@@ -79,33 +80,35 @@ public class MonksBirthdayTreat {
         answerByVoid();
     }
     private static int friends = 0;
+
     private static void answerByVoid() {
-        int minFriends =adjLists.length;
+        int minFriends = adjLists.length;
         for (int i = 1; i < adjLists.length; i++) {
             // This is a directed Graph so each node must have dfs seperately to 
             // gurantee traversal of the entire graph
             boolean[] vis = new boolean[adjLists.length];
-            dfsI(i,vis);
+            dfsI(i, vis);
             minFriends = minFriends < friends ? minFriends : friends;
-            friends=0;    
+            friends = 0;
         }
         Fio.fout.println(minFriends);
     }
+
     //Itertative Void dfs
-    public static void dfsI(int i,boolean[] vis) {
-        
+    public static void dfsI(int i, boolean[] vis) {
+
         Deque<Integer> stack = new ArrayDeque();
         stack.push(i);
-        vis[i]=true;
-        while(!stack.isEmpty()){
+        vis[i] = true;
+        while (!stack.isEmpty()) {
             int u = stack.pop();
             friends++;
-            for(int v : adjLists[u]){
-                if(!vis[v]){
+            for (int v : adjLists[u]) {
+                if (!vis[v]) {
                     stack.push(v);
-                    vis[v]=true;
+                    vis[v] = true;
                 }
             }
-        }        
+        }
     }
 }

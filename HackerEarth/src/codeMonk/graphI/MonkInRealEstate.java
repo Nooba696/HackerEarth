@@ -45,10 +45,10 @@ import java.util.List;
 
 /**
  *
- * @author Pratick
+ * @author Nooba
  */
 public class MonkInRealEstate {
-    
+
     private static List<Integer>[] adjLists;
 
     public static void main(String args[]) {
@@ -60,10 +60,12 @@ public class MonkInRealEstate {
             while (E-- > 0) {
                 int u = Fio.fin.readInt();
                 int v = Fio.fin.readInt();
-                if(adjLists[u]==null)
+                if (adjLists[u] == null) {
                     adjLists[u] = new ArrayList();
-                if(adjLists[v]==null)
+                }
+                if (adjLists[v] == null) {
                     adjLists[v] = new ArrayList();
+                }
                 adjLists[u].add(v);
                 adjLists[v].add(u);
             }
@@ -71,31 +73,33 @@ public class MonkInRealEstate {
         }
     }
     private static int cities = 0;
+
     private static void answerByVoid() {
         boolean[] vis = new boolean[adjLists.length];
         for (int i = 1; i < adjLists.length; i++) {
-            if (adjLists[i]!=null && !vis[i]) {
-                dfsI(i,vis);
+            if (adjLists[i] != null && !vis[i]) {
+                dfsI(i, vis);
             }
         }
         Fio.fout.println(cities);
-        cities=0;
+        cities = 0;
     }
+
     //Itertative Void dfs
-    public static void dfsI(int i,boolean[] vis) {
-        
+    public static void dfsI(int i, boolean[] vis) {
+
         Deque<Integer> stack = new ArrayDeque();
         stack.push(i);
-        vis[i]=true;
-        while(!stack.isEmpty()){
+        vis[i] = true;
+        while (!stack.isEmpty()) {
             int u = stack.pop();
             cities++;
-            for(int v : adjLists[u]){
-                if(!vis[v]){
+            for (int v : adjLists[u]) {
+                if (!vis[v]) {
                     stack.push(v);
-                    vis[v]=true;
+                    vis[v] = true;
                 }
             }
-        }        
+        }
     }
 }

@@ -1,29 +1,29 @@
 /*
 
-    This is the story in Zimbo, the kingdom officially made for monkeys. 
-    Our Code Monk visited Zimbo and declared open a challenge in the kingdom, 
+    This is the story in Zimbo, the kingdom officially made for monkeys.
+    Our Code Monk visited Zimbo and declared open a challenge in the kingdom,
     thus spoke to all the monkeys :
 
-    You all have to make teams and go on a hunt for Bananas. 
+    You all have to make teams and go on a hunt for Bananas.
     The team that returns with the highest number of Bananas will be rewarded
     with as many gold coins as the number of Bananas with them. May the force
-    be with you! Given there are N monkeys in the kingdom. 
+    be with you! Given there are N monkeys in the kingdom.
     Each monkey who wants to team up with another monkey has to perform a ritual.
-    Given total M rituals are performed. Each ritual teams up two monkeys. 
-    If Monkeys A and B teamed up and Monkeys B and C teamed up, 
+    Given total M rituals are performed. Each ritual teams up two monkeys.
+    If Monkeys A and B teamed up and Monkeys B and C teamed up,
     then Monkeys A and C are also in the same team.
 
-    You are given an array A where Ai is the number of 
+    You are given an array A where Ai is the number of
     bananas i'th monkey gathers.
 
     Find out the number of gold coins that our Monk should
     set aside for the prize.
 
     Input:
-    First line contains an integer T. T test cases follow. 
-    First line of each test case contains two space-separated N and M. 
-    M lines follow. Each of the M lines contains two integers Xi and Yi, 
-    the indexes of monkeys that perform the i'th ritual. 
+    First line contains an integer T. T test cases follow.
+    First line of each test case contains two space-separated N and M.
+    M lines follow. Each of the M lines contains two integers Xi and Yi,
+    the indexes of monkeys that perform the i'th ritual.
     Last line of the testcase contains N space-separated integer
     constituting the array A.
 
@@ -36,14 +36,14 @@
     0 ≤ M ≤ 10^5
     0 ≤ Ai ≤ 10^12
 
-    SAMPLE INPUT 
+    SAMPLE INPUT
     1
     4 3
     1 2
     2 3
     3 1
     1 2 3 5
-    SAMPLE OUTPUT 
+    SAMPLE OUTPUT
     6
     Explanation
     Monkeys 1,2 ,3 are in the same team. They gather 1+2+3=6 bananas.
@@ -54,10 +54,10 @@
     Memory Limit:	256 MB
     Source Limit:	1024 KB
     Marking Scheme:	Marks are awarded if any testcase passes.
-    Allowed Languages:	C, CPP, CLOJURE, CSHARP, D, ERLANG, FSHARP, GO, GROOVY, 
+    Allowed Languages:	C, CPP, CLOJURE, CSHARP, D, ERLANG, FSHARP, GO, GROOVY,
                         HASKELL, JAVA, JAVA8, JAVASCRIPT, JAVASCRIPT_NODE, LISP,
                         LISP_SBCL, LUA, OBJECTIVEC, OCAML, OCTAVE, PASCAL, PERL,
-                        PHP, PYTHON, PYTHON3, R, RACKET, RUBY, RUST, SCALA, 
+                        PHP, PYTHON, PYTHON3, R, RACKET, RUBY, RUST, SCALA,
                         SWIFT, VB
 
  */
@@ -108,7 +108,7 @@ public class KingdomOfMoneys {
         long maxBananas = 0;
         for (int i = 1; i < A.length; i++) {
             if (!vis[i]) {
-                dfsI(i,vis);
+                dfsI(i, vis);
                 maxBananas = (bananas > maxBananas) ? bananas : maxBananas;
                 bananas = 0;
             }
@@ -120,7 +120,7 @@ public class KingdomOfMoneys {
         boolean[] vis = new boolean[A.length];
         long maxBananas = 0;
         for (int i = 1; i < A.length; i++) {
-            
+
             if (!vis[i]) {
                 long bananas = dfs(i, vis, 0);
                 maxBananas = (bananas > maxBananas) ? bananas : maxBananas;
@@ -128,9 +128,10 @@ public class KingdomOfMoneys {
         }
         Fio.fout.println(maxBananas);
     }
-    
+
     // Void dfs way
     private static long bananas = 0;
+
     public static void dfs(int u, boolean[] vis) {
         vis[u] = true;
         for (int v : adjLists[u]) {
@@ -140,23 +141,23 @@ public class KingdomOfMoneys {
         }
         bananas = bananas + A[u];
     }
-    
+
     //Itertative Void dfs
-    public static void dfsI(int i,boolean[] vis) {
-        
+    public static void dfsI(int i, boolean[] vis) {
+
         Deque<Integer> stack = new ArrayDeque();
         stack.push(i);
-        vis[i]=true;
-        while(!stack.isEmpty()){
+        vis[i] = true;
+        while (!stack.isEmpty()) {
             int u = stack.pop();
             bananas = bananas + A[u];
-            for(int v : adjLists[u]){
-                if(!vis[v]){
+            for (int v : adjLists[u]) {
+                if (!vis[v]) {
                     stack.push(v);
-                    vis[v]=true;
+                    vis[v] = true;
                 }
             }
-        }        
+        }
     }
 
     // long dfs way
